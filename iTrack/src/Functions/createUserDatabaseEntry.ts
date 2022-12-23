@@ -9,7 +9,7 @@ type StockType = {
 };
 
 export const createUserDatabaseEntry = async (
-	UserName: 'string',
+	UserName: string,
 	UserObject: UserCredential | undefined
 ) => {
 	try {
