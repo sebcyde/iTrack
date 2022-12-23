@@ -9,7 +9,7 @@ const LoadingScreenStyle = {
 
 const Loading = () => {
 	return (
-		<div style={LoadingScreenStyle}>
+		<div style={LoadingScreenStyle} className="LoadingPage">
 			<FadeLoader
 				color={'#14213d'}
 				aria-label="Loading Spinner"

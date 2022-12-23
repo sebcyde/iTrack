@@ -22,6 +22,14 @@ body {
 	flex-direction: column;
 }
 
+.LoadingPage {
+	width: 100vw !important;
+	height: 100vh !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .App > div {
 	height: 100%;
 	width: 100%;
