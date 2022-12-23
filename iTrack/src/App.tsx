@@ -1,19 +1,32 @@
-import { Route, Routes } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Settings from './Pages/Settings/Settings';
 import Portfolio from './Pages/Portfolio/Portfolio';
 import LoadingPage from './Pages/Loading/LoadingPage';
+import Login from './Pages/AuthPages/Login';
+import SignUp from './Pages/AuthPages/SignUp';
+import { auth } from './Config/firebase';
 
 function App() {
+	const [user, loading, error] = useAuthState(auth);
 	const [Loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
-	// useEffect(() => {
-	// 	setTimeout(() => {
-	// 		setLoading(false);
-	// 	}, 1000);
-	// }, []);
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
+	}, []);
+
+	useEffect(() => {
+		if (user) {
+			navigate('/');
+		} else {
+			navigate('/login');
+		}
+	}, [user]);
 
 	return (
 		<div className="App">
@@ -25,6 +38,8 @@ function App() {
 						<Route path="/" element={<Dashboard />} />
 						<Route path="/portfolio" element={<Portfolio />} />
 						<Route path="/settings" element={<Settings />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/signup" element={<SignUp />} />
 					</Routes>
 				</>
 			)}
