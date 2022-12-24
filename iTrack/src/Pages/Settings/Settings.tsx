@@ -17,7 +17,7 @@ const Settings = (props: Props) => {
 		}
 	);
 	const [UserPortfolio, loading2, error2] = useDocument(
-		doc(getFirestore(app), `Users/${user?.uid}/StockLists/Portfolio`),
+		doc(getFirestore(app), `Users/${user?.uid}/StockLists/AllLists`),
 		{
 			snapshotListenOptions: { includeMetadataChanges: true },
 		}

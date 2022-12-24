@@ -6,6 +6,7 @@ import { db } from '../Config/firebase';
 type StockType = {
 	ShareCount: number;
 	AverageCost: number;
+	Ticker: string;
 };
 
 export const createUserDatabaseEntry = async (
@@ -24,19 +25,20 @@ export const createUserDatabaseEntry = async (
 			});
 
 			await setDoc(
-				doc(db, `Users/${UserObject.user.uid}/StockLists/Portfolio`),
+				doc(db, `Users/${UserObject.user.uid}/StockLists/AllLists`),
 				{
-					amzn: <StockType>{ ShareCount: 0, AverageCost: 0 },
-					msft: <StockType>{ ShareCount: 0, AverageCost: 0 },
-					aapl: <StockType>{ ShareCount: 0, AverageCost: 0 },
-					nflx: <StockType>{ ShareCount: 0, AverageCost: 0 },
-				}
-			);
-
-			await setDoc(
-				doc(db, `Users/${UserObject.user.uid}/StockLists/WatchList`),
-				{
-					Watchlist: ['amzn', 'msft', 'aapl', 'nflx'],
+					Portfolio: [
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'amzn' },
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'msft' },
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'aapl' },
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'nflx' },
+					],
+					Watchlist: [
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'amzn' },
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'msft' },
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'aapl' },
+						{ ShareCount: 0, AverageCost: 0, Ticker: 'nflx' },
+					],
 				}
 			);
 
