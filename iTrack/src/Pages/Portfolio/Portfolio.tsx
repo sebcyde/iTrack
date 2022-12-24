@@ -12,7 +12,7 @@ import LoadingComponent from '../Loading/LoadingComponent';
 
 const Portfolio = () => {
 	const [PortData, setPortData] = useState<AxiosResponse<any, any>[]>();
-	const [Loading, setLoading] = useState(false);
+	const [Loading, setLoading] = useState(true);
 	const [user, loading, error] = useAuthState(auth);
 	const [UserPortfolio, loading2, error2] = useDocument(
 		doc(getFirestore(app), `Users/${user?.uid}/StockLists/AllLists`),
@@ -23,7 +23,8 @@ const Portfolio = () => {
 
 	const PopulateData = async () => {
 		const PortfolioData = await PullPortfolio(UserPortfolio?.data());
-		console.log('Portfolio Data:', PortfolioData);
+		console.log('Portfolio Data:', UserPortfolio?.data());
+		console.log('RT Portfolio Data:', PortfolioData);
 		setPortData(PortfolioData);
 	};
 

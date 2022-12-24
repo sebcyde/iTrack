@@ -26,11 +26,13 @@ const Login = (props: Props) => {
 		<div className="AuthPage">
 			<input
 				type="email"
+				placeholder="Email"
 				value={email}
 				onChange={(e) => setEmail(e.target.value)}
 			/>
 			<input
 				type="password"
+				placeholder="Password"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
