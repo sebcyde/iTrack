@@ -12,6 +12,7 @@ import { app, auth } from '../../Config/firebase';
 import { PullPortfolio } from '../../Functions/PullPortfolio';
 import LoadingComponent from '../Loading/LoadingComponent';
 import { debounce } from 'lodash';
+import EmptyPortfolioBanner from '../../Components/Banners/EmptyPortfolioBanner';
 
 const Portfolio = () => {
 	const [PortData, setPortData] = useState<AxiosResponse<any, any>[]>();
@@ -44,6 +45,7 @@ const Portfolio = () => {
 		<div>
 			{/* <SearchNavbar /> */}
 			<TopNavbar />
+			<EmptyPortfolioBanner />
 			<input
 				type="text"
 				defaultValue={SearchTerm}
