@@ -59,6 +59,12 @@ const SearchResults = (props: Props) => {
 			setExpanded(newExpanded ? panel : false);
 		};
 
+	const AddToPortfolio = async (Stock: any) => {
+		console.log(
+			'this will add it to the portfolio. We need another function for the watchlist'
+		);
+		console.log('Stock to be added:', Stock);
+	};
 	return (
 		<div className="SearchResults">
 			{props.Results != undefined ? (
@@ -86,7 +92,11 @@ const SearchResults = (props: Props) => {
 										component="nav"
 										aria-labelledby="nested-list-subheader"
 									>
-										<ListItemButton>
+										<ListItemButton
+											onClick={() => {
+												AddToPortfolio(Result);
+											}}
+										>
 											<ListItemIcon>
 												<AddIcon />
 											</ListItemIcon>
