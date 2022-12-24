@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import LoadingComponent from '../../Pages/Loading/LoadingComponent';
 
 type Props = { Portfolio: any | undefined; RTPortfolio: any | undefined };
 
@@ -29,6 +30,7 @@ function compareLive(a: any, b: any) {
 
 const PortfolioPie = (props: Props) => {
 	const [Portfolio, setPortfolio] = useState<any>();
+	const [Loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		let SortedDBPortfolio = props.Portfolio?.sort(compare);
@@ -45,25 +47,30 @@ const PortfolioPie = (props: Props) => {
 		}));
 
 		setPortfolio(Port);
+		console.log(Port);
+		setLoading(false);
 	}, []);
-
-	useEffect(() => {
-		if (Portfolio) console.log('Final Portfolio:', Portfolio);
-	}, [Portfolio]);
 
 	return (
 		<ResponsiveContainer width="100%" height="100%">
-			<PieChart>
-				{/* <Pie
-					data={Portfolio}
-					dataKey={Portfolio.data['Global Quote']}
-					cx="50%"
-					cy="50%"
-					outerRadius={100}
-					fill="#000"
-					label
-				/> */}
-			</PieChart>
+			{Loading ? (
+				<LoadingComponent />
+			) : (
+				<>
+					{/* <PieChart>
+						<Pie
+							data={Portfolio}
+							dataKey={Portfolio.data.TotalPrice}
+							cx="50%"
+							cy="50%"
+							outerRadius={100}
+							fill="#000"
+							label
+						/>
+					</PieChart> */}
+					<h2>Finished Loading</h2>
+				</>
+			)}
 		</ResponsiveContainer>
 	);
 };
