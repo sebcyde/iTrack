@@ -58,3 +58,12 @@ button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
 }
+
+input {
+	padding: 15px;
+	width: 85%;
+	margin: 20px auto;
+	border: 2px solid black;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px black;
+}
