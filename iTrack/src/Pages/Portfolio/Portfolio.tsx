@@ -13,6 +13,7 @@ import { PullPortfolio } from '../../Functions/PullPortfolio';
 import LoadingComponent from '../Loading/LoadingComponent';
 import { debounce } from 'lodash';
 import EmptyPortfolioBanner from '../../Components/Banners/EmptyPortfolioBanner';
+import SearchResults from '../../Components/Portfolio/SearchResults';
 
 const Portfolio = () => {
 	const [PortData, setPortData] = useState<AxiosResponse<any, any>[]>();
@@ -24,6 +25,7 @@ const Portfolio = () => {
 			snapshotListenOptions: { includeMetadataChanges: true },
 		}
 	);
+	const [SearchResult, setSearchResult] = useState();
 	const [SearchTerm, setSearchTerm] = useState('');
 
 	const PopulateData = async () => {
@@ -34,9 +36,14 @@ const Portfolio = () => {
 	// useEffect(() => {
 	// 	if (UserPortfolio?.data()) PopulateData().then(() => setLoading(false));
 	// }, [UserPortfolio]);
-	const InputHandler = (event: any) => {
-		setSearchTerm(event.target.value);
-		console.log(event.target.value);
+	const InputHandler = async (event: any) => {
+		setLoading(true);
+		const Data = await axios.get(
+			`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${event.target.value}&apikey=E8FAQ4X1Q5P2WHPN`
+		);
+		setSearchResult(Data.data.bestMatches);
+		setLoading(false);
+		console.log('Search Data:', Data.data.bestMatches);
 	};
 
 	const debouncedHandler = useCallback(debounce(InputHandler, 1000), []);
@@ -52,6 +59,7 @@ const Portfolio = () => {
 				placeholder="Search Tickers"
 				onChange={debouncedHandler}
 			/>
+			<SearchResults Results={SearchResult} />
 			{/* {Loading || loading || loading2 ? (
 				<LoadingComponent />
 			) : (
