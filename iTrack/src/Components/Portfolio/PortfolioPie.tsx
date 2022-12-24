@@ -1,27 +1,55 @@
-import React, { PureComponent, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
 type Props = { Portfolio: any | undefined; RTPortfolio: any | undefined };
 
 function compare(a: any, b: any) {
-	if (a.ticker < b.ticker) {
+	if (a.Ticker < b.Ticker) {
 		return -1;
 	}
-	if (a.ticker > b.ticker) {
+	if (a.Ticker > b.Ticker) {
+		return 1;
+	}
+	return 0;
+}
+
+function compareLive(a: any, b: any) {
+	if (
+		a.data['Global Quote']['01. symbol'] < b.data['Global Quote']['01. symbol']
+	) {
+		return -1;
+	}
+	if (
+		a.data['Global Quote']['01. symbol'] > b.data['Global Quote']['01. symbol']
+	) {
 		return 1;
 	}
 	return 0;
 }
 
 const PortfolioPie = (props: Props) => {
+	const [Portfolio, setPortfolio] = useState<any>();
+
 	useEffect(() => {
-		console.log('Portfolio:', props.Portfolio);
-		console.log('RT Portfolio:', props.RTPortfolio);
+		let SortedDBPortfolio = props.Portfolio?.sort(compare);
+		let SortedLivePortfolio = props.RTPortfolio.sort(compareLive);
+
+		console.log('Sorted Portfolio:', SortedDBPortfolio);
+		console.log('Sorted Live Portfolio:', SortedLivePortfolio);
+
+		let Port = SortedDBPortfolio.map((Stock: any, index: number) => ({
+			...SortedLivePortfolio[index].data['Global Quote'],
+			TotalPrice:
+				Stock.ShareCount *
+				+SortedLivePortfolio[index].data['Global Quote']['05. price'],
+		}));
+
+		setPortfolio(Port);
 	}, []);
 
-	// let SoretedLivePortfolio = props.RTPortfolio?.sort
-
-	// let Port = props.Portfolio?.map((Stock: any, index:number) => {{StockTicker: Stock.ShareCount *  }});
+	useEffect(() => {
+		if (Portfolio) console.log('Final Portfolio:', Portfolio);
+	}, [Portfolio]);
 
 	return (
 		<ResponsiveContainer width="100%" height="100%">

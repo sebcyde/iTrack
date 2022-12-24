@@ -22,9 +22,7 @@ const Portfolio = () => {
 	);
 
 	const PopulateData = async () => {
-		const PortfolioData = await PullPortfolio(UserPortfolio?.data());
-		console.log('Portfolio Data:', UserPortfolio?.data());
-		console.log('RT Portfolio Data:', PortfolioData);
+		const PortfolioData = await PullPortfolio(user, UserPortfolio?.data());
 		setPortData(PortfolioData);
 	};
 

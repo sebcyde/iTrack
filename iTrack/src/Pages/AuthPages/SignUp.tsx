@@ -2,6 +2,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import React, { useState } from 'react';
 import { auth } from '../../Config/firebase';
 import { createUserDatabaseEntry } from '../../Functions/createUserDatabaseEntry';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {};
 
@@ -11,6 +12,7 @@ const SignUp = (props: Props) => {
 	const [password, setPassword] = useState('');
 	const [userName, setuserName] = useState('');
 	const [email, setEmail] = useState('');
+	const navigate = useNavigate();
 
 	const CreateAccount = async () => {
 		const NewUser = await createUserWithEmailAndPassword(email, password);
@@ -48,6 +50,9 @@ const SignUp = (props: Props) => {
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<button onClick={CreateAccount}>Register</button>
+			<a style={{ textAlign: 'center' }} onClick={() => navigate('/login')}>
+				Already have an account?
+			</a>
 		</div>
 	);
 };
