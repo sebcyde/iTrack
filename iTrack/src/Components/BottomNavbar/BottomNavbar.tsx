@@ -2,6 +2,7 @@ import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeIcon from '@mui/icons-material/Home';
+import MessageIcon from '@mui/icons-material/Message';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,9 +28,12 @@ const BottomNavbar = (props: Props) => {
 								navigate('/');
 								break;
 							case 1:
-								navigate('/portfolio');
+								navigate('/news');
 								break;
 							case 2:
+								navigate('/portfolio');
+								break;
+							case 3:
 								navigate('/settings');
 								break;
 							default:
@@ -38,7 +42,9 @@ const BottomNavbar = (props: Props) => {
 					}}
 				>
 					<BottomNavigationAction label="Home" icon={<HomeIcon />} />
+					<BottomNavigationAction label="News" icon={<MessageIcon />} />
 					<BottomNavigationAction label="Portfolio" icon={<TrendingUpIcon />} />
+
 					<BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
 				</BottomNavigation>
 			</Paper>

@@ -20,8 +20,6 @@ const EmptyPortfolioBanner = (props: Props) => {
 	useEffect(() => {
 		if (!loading && !loading2 && UserPortfolio?.data()?.Portfolio.length < 1) {
 			setLoading(false);
-		} else {
-			console.log('Portfolio Has Data');
 		}
 	}, [UserPortfolio]);
 

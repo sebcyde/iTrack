@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { StockSlice } from './Slices/PortfolioSlice';
 
 const store = configureStore({
 	reducer: {
-		Portfolio: PortFolioReducer,
+		StockReducer: StockSlice.reducer,
 	},
 });
 export type RootState = ReturnType<typeof store.getState>;

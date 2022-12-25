@@ -27,18 +27,8 @@ export const createUserDatabaseEntry = async (
 			await setDoc(
 				doc(db, `Users/${UserObject.user.uid}/StockLists/AllLists`),
 				{
-					Portfolio: [
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'amzn' },
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'msft' },
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'aapl' },
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'nflx' },
-					],
-					Watchlist: [
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'amzn' },
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'msft' },
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'aapl' },
-						{ ShareCount: 0, AverageCost: 0, Ticker: 'nflx' },
-					],
+					Portfolio: [],
+					Watchlist: [],
 				}
 			);
 

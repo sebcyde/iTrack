@@ -7,47 +7,25 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
-import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import AddIcon from '@mui/icons-material/Add';
+import { Divider, ListItem } from '@mui/material';
 
-const Accordion = styled((props: AccordionProps) => (
-	<MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-	border: `1px solid ${theme.palette.divider}`,
-	'&:not(:last-child)': {
-		borderBottom: 0,
-	},
-	'&:before': {
-		display: 'none',
-	},
-}));
-
-const AccordionSummary = styled((props: AccordionSummaryProps) => (
-	<MuiAccordionSummary
-		expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
-		{...props}
-	/>
-))(({ theme }) => ({
-	backgroundColor: 'rgba(0, 0, 0, .03)',
-	flexDirection: 'row-reverse',
-	'& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-		transform: 'rotate(90deg)',
-	},
-	'& .MuiAccordionSummary-content': {
-		marginLeft: theme.spacing(1),
-	},
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-	padding: theme.spacing(2),
-	borderTop: '1px solid rgba(0, 0, 0, .125)',
-}));
+type Stock = {
+	'1. symbol': string;
+	'2. name': string;
+	'3. type': string;
+	'4. region': string;
+	'5. marketOpen': string;
+	'6. marketClose': string;
+	'7. timezone': string;
+	'8. currency': string;
+	'9. matchScore': '1.0000';
+};
 
 type Props = { Results: [] | undefined };
 
@@ -65,54 +43,29 @@ const SearchResults = (props: Props) => {
 		);
 		console.log('Stock to be added:', Stock);
 	};
+
+  const AddToWatchlist = async (Stock: any) => {
+    
+  };
+
 	return (
 		<div className="SearchResults">
 			{props.Results != undefined ? (
 				<>
-					{props.Results?.map((Result, index) => {
-						return (
-							<Accordion
-								expanded={expanded === `Panel${index}`}
-								onChange={handleChange(`Panel${index}`)}
-							>
-								<AccordionSummary
-									aria-controls={`panel${index}d-content`}
-									id={`panel${index}d-header`}
-								>
-									<Typography>
-										{Result['1. symbol']} - {Result['2. name']}
-									</Typography>
-								</AccordionSummary>
-								<AccordionDetails>
-									<List
-										sx={{
-											width: '100%',
-											bgcolor: 'background.paper',
-										}}
-										component="nav"
-										aria-labelledby="nested-list-subheader"
-									>
-										<ListItemButton
-											onClick={() => {
-												AddToPortfolio(Result);
-											}}
-										>
-											<ListItemIcon>
-												<AddIcon />
-											</ListItemIcon>
-											<ListItemText primary="Add to Portfolio" />
-										</ListItemButton>
-										<ListItemButton>
-											<ListItemIcon>
-												<PlaylistAddIcon />
-											</ListItemIcon>
-											<ListItemText primary="Add to Watchlist" />
-										</ListItemButton>
-									</List>
-								</AccordionDetails>
-							</Accordion>
-						);
-					})}
+					<List component="nav" aria-label="mailbox folders">
+						{props.Results?.map((Result, index) => {
+							return (
+								<>
+									<ListItemButton>
+										<ListItemText
+											primary={`${Result['1. symbol']} - ${Result['2. name']}`}
+										/>
+									</ListItemButton>
+									<Divider />
+								</>
+							);
+						})}
+					</List>
 				</>
 			) : (
 				''

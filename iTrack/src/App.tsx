@@ -8,6 +8,7 @@ import LoadingPage from './Pages/Loading/LoadingPage';
 import Login from './Pages/AuthPages/Login';
 import SignUp from './Pages/AuthPages/SignUp';
 import { auth } from './Config/firebase';
+import News from './Pages/News/News';
 
 function App() {
 	const [user, loading, error] = useAuthState(auth);
@@ -38,6 +39,7 @@ function App() {
 						<Route path="/" element={<Dashboard />} />
 						<Route path="/portfolio" element={<Portfolio />} />
 						<Route path="/settings" element={<Settings />} />
+						<Route path="/news" element={<News />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<SignUp />} />
 					</Routes>
