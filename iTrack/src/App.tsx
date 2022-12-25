@@ -12,6 +12,7 @@ import News from './Pages/News/News';
 import { UpdateStockList } from './Functions/UpdateStocklist';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import { doc, getFirestore } from 'firebase/firestore';
+import StockDetails from './Pages/StockDetails/StockDetails';
 
 function App() {
 	const [user, loading, error] = useAuthState(auth);
@@ -50,6 +51,7 @@ function App() {
 			console.log(`Logs every minute. Current Iteration: ${X}`);
 			if (UserPortfolio?.data()?.Portfolio.length > 0 && user) {
 				UpdateStockList(user, UserPortfolio?.data()?.Portfolio);
+				console.log('Updated Portfolio:', UserPortfolio?.data()?.Portfolio);
 			} else {
 				console.log('Portfolio is empty. cant update.');
 			}
@@ -69,6 +71,7 @@ function App() {
 						<Route path="/portfolio" element={<Portfolio />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path="/news" element={<News />} />
+						<Route path="/stockdetails" element={<StockDetails />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<SignUp />} />
 					</Routes>
