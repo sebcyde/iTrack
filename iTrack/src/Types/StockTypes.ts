@@ -22,3 +22,26 @@ export type StockDetailsType = {
 	'09. change': string;
 	'10. change percent': string;
 };
+
+export type StockChangeType = {
+	c: number;
+	d: number;
+	dp: number;
+	h: number;
+	l: number;
+	o: number;
+	pc: number;
+	t: number;
+};
+
+export type NamedStockChangeType = {
+	ticker: string;
+	c: number;
+	d: number;
+	dp: number;
+	h: number;
+	l: number;
+	o: number;
+	pc: number;
+	t: number;
+};

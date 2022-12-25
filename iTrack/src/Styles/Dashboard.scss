@@ -1,0 +1,74 @@
+.DashboardComponent {
+	width: 95%;
+	margin: 0 auto !important;
+
+	.DashboardComponentTitle {
+		font-weight: 400;
+		margin: 20px 0px;
+	}
+
+	&.TopStocksContainer {
+		.TopStockTitleSpan {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			h2 {
+				width: auto;
+			}
+			.MuiFormControl-root {
+				height: fit-content;
+				width: fit-content;
+			}
+		}
+
+		.MuiList-root {
+			box-shadow: 3px 3px 3px gray;
+			border-radius: 5px;
+			padding: 0px !important;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+
+		.TopStockContainer {
+			box-sizing: border-box;
+			padding: 5px;
+			background-color: whitesmoke;
+			border-bottom: 1px solid gray;
+
+			&:nth-last-of-type(1) {
+				border-bottom: none;
+			}
+
+			p {
+				margin: 0px;
+			}
+
+			span:nth-of-type(1) {
+				display: flex;
+			}
+
+			.TopStocksTicker {
+				font-weight: bold;
+				width: 60%;
+			}
+			span {
+				text-align: end;
+				width: 40%;
+				display: flex;
+				justify-content: space-between;
+
+				.TopStocksPrice {
+				}
+				.TopStocksPC {
+					&.red {
+						color: red;
+					}
+					&.green {
+						color: green;
+					}
+				}
+			}
+		}
+	}
+}

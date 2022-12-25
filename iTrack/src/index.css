@@ -67,3 +67,8 @@ input {
 	border-radius: 5px;
 	box-shadow: 3px 3px 3px black;
 }
+
+p {
+	margin: 0;
+	font-size: 15px;
+}
