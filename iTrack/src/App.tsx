@@ -7,20 +7,32 @@ import Portfolio from './Pages/Portfolio/Portfolio';
 import LoadingPage from './Pages/Loading/LoadingPage';
 import Login from './Pages/AuthPages/Login';
 import SignUp from './Pages/AuthPages/SignUp';
-import { auth } from './Config/firebase';
+import { app, auth } from './Config/firebase';
 import News from './Pages/News/News';
+import { UpdateStockList } from './Functions/UpdateStocklist';
+import { useDocument } from 'react-firebase-hooks/firestore';
+import { doc, getFirestore } from 'firebase/firestore';
 
 function App() {
 	const [user, loading, error] = useAuthState(auth);
+	const [UserPortfolio, loading2, error2] = useDocument(
+		doc(getFirestore(app), `Users/${user?.uid}/StockLists/AllLists`),
+		{
+			snapshotListenOptions: { includeMetadataChanges: true },
+		}
+	);
 	const [Loading, setLoading] = useState(false);
 	const navigate = useNavigate();
+	const StockUpdateTimer = 60000;
 
+	// Initial loading screen
 	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
 		}, 1000);
 	}, []);
 
+	// Ensure user is signed in or redirect to login
 	useEffect(() => {
 		if (user) {
 			navigate('/');
@@ -28,6 +40,23 @@ function App() {
 			navigate('/login');
 		}
 	}, [user]);
+
+	// Update Stocklist in Users DB every interval
+	useEffect(() => {
+		let X = 0;
+
+		const interval = setInterval(() => {
+			X++;
+			console.log(`Logs every minute. Current Iteration: ${X}`);
+			if (UserPortfolio?.data()?.Portfolio.length > 0 && user) {
+				UpdateStockList(user, UserPortfolio?.data()?.Portfolio);
+			} else {
+				console.log('Portfolio is empty. cant update.');
+			}
+		}, StockUpdateTimer);
+
+		return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+	}, []);
 
 	return (
 		<div className="App">
