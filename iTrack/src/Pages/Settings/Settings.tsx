@@ -16,6 +16,7 @@ const Settings = (props: Props) => {
 			snapshotListenOptions: { includeMetadataChanges: true },
 		}
 	);
+
 	const [UserPortfolio, loading2, error2] = useDocument(
 		doc(getFirestore(app), `Users/${user?.uid}/StockLists/AllLists`),
 		{
@@ -23,6 +24,7 @@ const Settings = (props: Props) => {
 		}
 	);
 	const LogOut = async () => await signOut(auth);
+
 	const PullData = async () => {
 		console.log('User:', user);
 		console.log('User DB:', UserDB?.data());

@@ -24,7 +24,7 @@ function App() {
 	);
 	const [Loading, setLoading] = useState(false);
 	const navigate = useNavigate();
-	const StockUpdateTimer = 60000;
+	const StockUpdateTimer = 300000;
 
 	// Initial loading screen
 	useEffect(() => {
@@ -49,7 +49,9 @@ function App() {
 		const interval = setInterval(() => {
 			X++;
 			console.log(`Logs every minute. Current Iteration: ${X}`);
-			if (UserPortfolio?.data()?.Portfolio.length > 0 && user) {
+
+			if (UserPortfolio?.data()?.Portfolio.length != 0 && user && !loading2) {
+				console.log('Updating Portfolio');
 				UpdateStockList(user, UserPortfolio?.data()?.Portfolio);
 				console.log('Updated Portfolio:', UserPortfolio?.data()?.Portfolio);
 			} else {
@@ -57,8 +59,14 @@ function App() {
 			}
 		}, StockUpdateTimer);
 
-		return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+		return () => clearInterval(interval);
 	}, []);
+
+	// For monitoring User Portfolio Updates
+	useEffect(() => {
+		if (UserPortfolio?.data()?.Portfolio)
+			console.log('Portfolio Data From App:', UserPortfolio?.data()?.Portfolio);
+	}, [UserPortfolio?.data()]);
 
 	return (
 		<div className="App">
