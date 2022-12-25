@@ -127,6 +127,9 @@ const TopStocks = (props: Props) => {
 									);
 								})}
 							</List>
+							<p className="CheckPortPage">
+								To view all, check the Portfolio page
+							</p>
 						</>
 					)}
 				</>

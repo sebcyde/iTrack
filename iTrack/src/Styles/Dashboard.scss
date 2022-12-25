@@ -8,6 +8,14 @@
 	}
 
 	&.TopStocksContainer {
+		.CheckPortPage {
+			width: 100%;
+			text-align: center;
+			margin: 5px 0px;
+			font-size: 13px;
+			color: gray;
+		}
+
 		.TopStockTitleSpan {
 			display: flex;
 			justify-content: space-between;

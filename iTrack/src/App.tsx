@@ -24,7 +24,7 @@ function App() {
 	);
 	const [Loading, setLoading] = useState(false);
 	const navigate = useNavigate();
-	const StockUpdateTimer = 300000;
+	const StockUpdateTimer = 900000;
 
 	// Initial loading screen
 	useEffect(() => {
