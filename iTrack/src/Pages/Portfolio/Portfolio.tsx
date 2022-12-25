@@ -14,6 +14,7 @@ import LoadingComponent from '../Loading/LoadingComponent';
 import { debounce } from 'lodash';
 import EmptyPortfolioBanner from '../../Components/Banners/EmptyPortfolioBanner';
 import SearchResults from '../../Components/Portfolio/SearchResults';
+import { APIKEY } from '../../Config/Keys';
 
 const Portfolio = () => {
 	const [PortData, setPortData] = useState<AxiosResponse<any, any>[]>();
@@ -39,7 +40,7 @@ const Portfolio = () => {
 	const InputHandler = async (event: any) => {
 		setLoading(true);
 		const Data = await axios.get(
-			`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${event.target.value}&apikey=E8FAQ4X1Q5P2WHPN`
+			`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${event.target.value}&apikey=${APIKEY}`
 		);
 		setSearchResult(Data.data.bestMatches);
 		setLoading(false);

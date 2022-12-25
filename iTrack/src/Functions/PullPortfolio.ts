@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../Config/firebase';
+import { APIKEY } from '../Config/Keys';
 
 function compareLive(a: any, b: any) {
 	if (
@@ -21,7 +22,7 @@ export const PullPortfolio = async (UserObject: any, UserPortfolio: any) => {
 	await Promise.all(
 		UserPortfolio.Portfolio.map(async (Stock: any, index: number) => {
 			let TickerData = await axios.get(
-				`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${Stock.Ticker}&apikey=E8FAQ4X1Q5P2WHPN`
+				`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${Stock.Ticker}&apikey=${APIKEY}`
 			);
 			PulledPortfolio.push(TickerData);
 		})

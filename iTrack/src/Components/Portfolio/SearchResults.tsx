@@ -23,12 +23,11 @@ type Props = { Results: [] | undefined };
 
 const SearchResults = (props: Props) => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	const ViewStock = async (Stock: string) => {
-		console.log('Stock to be added:', Stock);
 		dispatch(UpdateStock(Stock));
-		navigate('/stockdetails')
+		navigate('/stockdetails');
 	};
 
 	return (

@@ -4,6 +4,7 @@ import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import { auth, app, db } from '../Config/firebase';
+import { APIKEY } from '../Config/Keys';
 import { StockType } from '../Types/StockTypes';
 
 export const UpdateStockList = async (User: User, UserPortfolioData: any) => {
@@ -15,7 +16,7 @@ export const UpdateStockList = async (User: User, UserPortfolioData: any) => {
 		Promise.all(
 			UserPortfolioData.map(async (Stock: StockType) => {
 				let Data = await axios.get(
-					`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${Stock['1. symbol']}&apikey=E8FAQ4X1Q5P2WHPN`
+					`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${Stock['1. symbol']}&apikey=${APIKEY}`
 				);
 				console.log(Data.data);
 			})
