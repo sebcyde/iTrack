@@ -15,6 +15,7 @@ import { debounce } from 'lodash';
 import EmptyPortfolioBanner from '../../Components/Banners/EmptyPortfolioBanner';
 import SearchResults from '../../Components/Portfolio/SearchResults';
 import { APIKEY } from '../../Config/Keys';
+import Watchlist from '../../Components/Portfolio/Watchlist';
 
 const Portfolio = () => {
 	const [PortData, setPortData] = useState<AxiosResponse<any, any>[]>();
@@ -72,6 +73,7 @@ const Portfolio = () => {
 				</div>
 			)} */}
 			<button onClick={PopulateData}>Pull Data</button>
+			<Watchlist />
 			<BottomNavbar />
 		</div>
 	);

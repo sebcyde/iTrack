@@ -15,47 +15,25 @@ export const NamedZASort = (Array: NamedStockChangeType[]) => {
 	return NewArray;
 };
 
-export const PercentUp = (Array: NamedStockChangeType[]) => {
-	function compare(a: NamedStockChangeType, b: NamedStockChangeType) {
-		if (a.dp < b.dp) {
-			return -1;
-		}
-		if (a.dp > b.dp) {
-			return 1;
-		}
-		return 0;
-	}
-	let NewArray = Array.sort(compare);
-
-	return NewArray;
+export const PercentUp = (
+	Array: NamedStockChangeType[]
+): NamedStockChangeType[] => {
+	return Array.sort(
+		(a: NamedStockChangeType, b: NamedStockChangeType) => a.dp - b.dp
+	);
 };
 
-export const PercentDown = (Array: NamedStockChangeType[]) => {
-	function compare(a: NamedStockChangeType, b: NamedStockChangeType) {
-		if (b.dp < a.dp) {
-			return -1;
-		}
-		if (b.dp > a.dp) {
-			return 1;
-		}
-		return 0;
-	}
-	let NewArray = Array.sort(compare);
-	return NewArray;
+export const PercentDown = (
+	Array: NamedStockChangeType[]
+): NamedStockChangeType[] => {
+	return Array.sort(
+		(a: NamedStockChangeType, b: NamedStockChangeType) => b.dp - a.dp
+	);
 };
 
 // News Sort Functions
-
-export const RecentNewsSort = (Array: NewsType[]) => {
-	function compare(a: NewsType, b: NewsType) {
-		if (a.datetime < b.datetime) {
-			return -1;
-		}
-		if (a.datetime > b.datetime) {
-			return 1;
-		}
-		return 0;
-	}
-	let NewArray = Array.sort(compare);
-	return NewArray;
+export const RecentNewsSort = (Array: NewsType[]): NewsType[] => {
+	return Array.sort(
+		(a: NewsType, b: NewsType) => b.datetime.valueOf() - a.datetime.valueOf()
+	);
 };

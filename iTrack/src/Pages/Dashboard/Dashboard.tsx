@@ -11,7 +11,6 @@ const Dashboard = (props: Props) => {
 		<div>
 			<TopNavbar />
 			<EmptyPortfolioBanner />
-			<h1>Welcome Back Sebastian</h1>
 			<TopStocks />
 			<BottomNavbar />
 		</div>
