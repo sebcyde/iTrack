@@ -1,0 +1,96 @@
+.NewsComponent {
+	width: 100%;
+	margin: 0 auto !important;
+
+	.NewsComponentTitle {
+		font-weight: 400;
+		margin: 20px 10px;
+		margin-bottom: 0;
+	}
+
+	.NewsItem {
+		width: 97%;
+
+		background-color: 1px solid gray;
+		box-shadow: 3px 3px 3px gray;
+		border: 1px solid black;
+		margin: 10px auto;
+		border-radius: 5px;
+
+		.MuiListItemButton-root {
+			border-radius: 5px;
+			box-sizing: border-box;
+			overflow: hidden;
+			width: 100%;
+			padding: 10px;
+			height: fit-content;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: space-evenly;
+
+			> div {
+				width: 90%;
+				height: fit-content;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			> div:nth-of-type(1) {
+				align-items: flex-start;
+			}
+			> div:nth-of-type(2) {
+				align-items: flex-end;
+			}
+		}
+
+		.NewsHeadlineContainer {
+			h4 {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 280px;
+				font-size: 15px;
+				margin: 0;
+				margin-right: 5px;
+				text-align: left;
+			}
+		}
+
+		.NewsSource {
+			font-size: 11px;
+			color: gray;
+		}
+
+		.NewsTickerContainer {
+			> div {
+				height: 20px;
+				width: fit-content;
+				font-size: 10px;
+			}
+		}
+
+		.NewsTickerContainer {
+		}
+
+		.NewsSummary {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 240px;
+			font-size: 15px;
+		}
+
+		.NewsImageContainer {
+			width: fit-content;
+			height: fit-content;
+			margin-left: auto;
+
+			img {
+				border-radius: 5px;
+				object-fit: cover;
+				height: 70px;
+				width: 70px;
+			}
+		}
+	}
+}

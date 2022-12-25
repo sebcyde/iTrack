@@ -42,7 +42,7 @@ const UpcomingEarnings = (props: Props) => {
 	}, [UserPortfolio]);
 
 	return (
-		<div className="DashboardComponent">
+		<div className="DashboardComponent UpcomingEarningsContainer">
 			<h2 className="DashboardComponentTitle">Portfolio Snapshot</h2>
 		</div>
 	);
